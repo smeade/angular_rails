@@ -8,5 +8,8 @@
     <div>
       {{intro}}
     </div>
+    <div ng-repeat="post in posts | orderBy: '-upvotes'">
+      {{post.title}} - upvotes: {{post.upvotes}}
+    </div>
   </body>
 </html>
