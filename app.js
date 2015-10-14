@@ -8,6 +8,11 @@ function($stateProvider, $urlRouterProvider) {
       url: '/home',
       templateUrl: '/home.html',
       controller: 'MainCtrl'
+    })
+    .state('posts', {
+      url: '/posts/{id}',
+      templateUrl: '/posts.html',
+      controller: 'PostsCtrl'
     });
 
   $urlRouterProvider.otherwise('home');
@@ -28,7 +33,15 @@ function($scope, posts){
 
   $scope.addPost = function() {
     if(!$scope.title || $scope.title === '') {return};
-    $scope.posts.push({title: $scope.title, upvotes: 0, link: $scope.link});
+    $scope.posts.push({
+      title: $scope.title,
+      upvotes: 0,
+      link: $scope.link,
+      comments: [
+        {author: "Jonathan", body: "Cool post", upvotes: 0},
+        {author: "Rachel", body: "Cool post", upvotes: 0},
+      ]
+    });
     $scope.title = '';
     $scope.link = '';
   };
@@ -40,4 +53,11 @@ function($scope, posts){
   $scope.decrementUpvotes = function(post) {
     post.upvotes -=1;
   };
+}])
+.controller('PostsCtrl', [
+'$scope',
+'$stateParams',
+'posts',
+function($scope, $stateParams, posts) {
+  $scope.post = posts.posts[$stateParams.id];
 }]);
