@@ -21,4 +21,8 @@ function($scope){
   $scope.incrementUpvotes = function(post) {
     post.upvotes +=1 ;
   };
+
+  $scope.decrementUpvotes = function(post) {
+    post.upvotes -=1;
+  };
 }]);
