@@ -30,3 +30,4 @@ gem 'spring',      group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'angular-rails-templates'
+gem 'angular_rails_csrf'
